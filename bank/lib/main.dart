@@ -11,7 +11,7 @@ void main() => runApp(MaterialApp(
             child: Accounts(),
           );
         },
-        AppRoutes.CONTACTS:(context) => const SafeArea(child: ContactsPage())
+        AppRoutes.CONTACTS:(context) => SafeArea(child: ContactsPage())
       },
 
       home: const SafeArea(child: DashboardScreen()),
