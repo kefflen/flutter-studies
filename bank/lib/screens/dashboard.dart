@@ -1,3 +1,4 @@
+import 'package:bank/models/routes.dart';
 import 'package:flutter/material.dart';
 import '../components/navigation_button.dart';
 
@@ -19,17 +20,17 @@ class DashboardScreen extends StatelessWidget {
         children: const [
           NavigationButton(
             name: "Conta",
-            route: "/accounts",
+            route: AppRoutes.ACCOUNTS,
           ),
           NavigationButton(
             name: "Contatos",
             color: Colors.blue,
-            route: "/accounts",
+            route: AppRoutes.CONTACTS,
           ),
           NavigationButton(
             name: "Extrato",
             color: Colors.green,
-            route: "/accounts",
+            route: "/",
           ),
         ],
       ),
