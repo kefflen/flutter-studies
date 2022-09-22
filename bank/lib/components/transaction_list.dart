@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../models/transaction.dart';
 
-class TransactionList extends StatelessWidget {
-  final List<TransactionItem> _transactionList;
+class TransactionListComponent extends StatelessWidget {
+  final List<Transaction> _transactionList;
 
-  const TransactionList(this._transactionList, {Key? key}) : super(key: key);
+  const TransactionListComponent(this._transactionList, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: _transactionList,
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: _transactionList.length,
+      itemBuilder: (ctx, index) => TransactionItem(_transactionList[index]),
     );
   }
 }

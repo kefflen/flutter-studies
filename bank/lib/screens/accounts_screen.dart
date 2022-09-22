@@ -1,9 +1,10 @@
 import 'package:bank/components/transaction_form.dart';
 import 'package:bank/components/transaction_list.dart';
+import 'package:bank/models/transactions_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/transaction.dart';
-
 
 class Accounts extends StatefulWidget {
   const Accounts({Key? key}) : super(key: key);
@@ -17,14 +18,12 @@ class _AccountsState extends State<Accounts> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TransactionList>(context);
+
     openTransactionModal(BuildContext context) {
       onSubmit(int accountNumber, double value) {
-        final transactionItem = TransactionItem(
-          Transaction(value, accountNumber),
-        );
-        setState(() {
-          _transactionList.add(transactionItem);
-        });
+        provider.addTransaction(Transaction(value, accountNumber));
+
         Navigator.pop(context);
       }
 
@@ -41,7 +40,7 @@ class _AccountsState extends State<Accounts> {
         title: const Text('Bank app'),
       ),
       body: SingleChildScrollView(
-        child: TransactionList(_transactionList),
+        child: TransactionListComponent(provider.items),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Adicionar transação',
@@ -52,4 +51,3 @@ class _AccountsState extends State<Accounts> {
     );
   }
 }
-
