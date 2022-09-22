@@ -1,3 +1,4 @@
+import 'package:bank/models/contacts_list.dart';
 import 'package:bank/models/routes.dart';
 import 'package:bank/models/transactions_list.dart';
 import 'package:bank/screens/accounts_screen.dart';
@@ -9,7 +10,8 @@ import 'package:provider/provider.dart';
 void main() => runApp(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => TransactionList())
+          ChangeNotifierProvider(create: (_) => TransactionList()),
+          ChangeNotifierProvider(create: (_) => ContactsList())
         ],
         child: MaterialApp(
           routes: {

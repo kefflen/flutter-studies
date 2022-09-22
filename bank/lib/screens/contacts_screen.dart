@@ -1,7 +1,9 @@
 import 'package:bank/components/contact_form.dart';
 import 'package:bank/components/contacts_item.dart';
 import 'package:bank/models/contact.dart';
+import 'package:bank/models/contacts_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class ContactsPage extends StatefulWidget {
@@ -12,20 +14,17 @@ class ContactsPage extends StatefulWidget {
 }
 
 class _ContactsPageState extends State<ContactsPage> {
-  final contacts = [
-    Contact("p1", "Ana", "(16) 99999-9999", "any@email.com"),
-    Contact("p2", "Pedro", "(16) 99999-9999", "any@email.com"),
-    Contact("p3", "Paulo", "(16) 99999-9999", "any@email.com"),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ContactsList>(context);
+    
     openContactModal(BuildContext ctx) {
       var uuid = const Uuid();
       onSubmit(String name, String email, String phone) {
         final newContact = Contact(uuid.v4(), name, phone, email);
         setState(() {
-          contacts.add(newContact);
+          provider.addContact(newContact);
         });
         Navigator.pop(context);
       }
@@ -39,15 +38,16 @@ class _ContactsPageState extends State<ContactsPage> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text("Contatos"),
       ),
       body: SingleChildScrollView(
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: contacts.length,
+          itemCount: provider.items.length,
           itemBuilder: (ctx, index) {
-            return ContactsItem(contacts[index]);
+            return ContactsItem(provider.items[index]);
           },
         ),
       ),
