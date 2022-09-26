@@ -21,16 +21,19 @@ class DashboardScreen extends StatelessWidget {
           NavigationButton(
             name: "Conta",
             route: AppRoutes.ACCOUNTS,
+            icon: Icons.account_box,
           ),
           NavigationButton(
             name: "Contatos",
             color: Colors.blue,
             route: AppRoutes.CONTACTS,
+            icon: Icons.add_ic_call_sharp,
           ),
           NavigationButton(
             name: "Extrato",
             color: Colors.green,
             route: "/",
+            icon: Icons.savings_sharp,
           ),
         ],
       ),

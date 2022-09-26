@@ -4,12 +4,13 @@ class NavigationButton extends StatelessWidget {
   final String name;
   final Color color;
   final String route;
+  final IconData icon;
 
   const NavigationButton(
       {Key? key,
       required this.name,
       this.color = Colors.purple,
-      required this.route})
+      required this.route, required this.icon})
       : super(key: key);
 
   @override
@@ -30,7 +31,24 @@ class NavigationButton extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Text(name),
+        child: Column(
+          children: [
+            Text(
+              name,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+            Expanded(
+              child: Icon(
+                icon,
+                color: Colors.white.withOpacity(0.7),
+                size: 68,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

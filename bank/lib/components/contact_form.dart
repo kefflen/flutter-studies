@@ -27,45 +27,48 @@ class _ContactFormState extends State<ContactForm> {
     
     return Padding(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 8,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: TextField(
-              controller: nameController,
-              onSubmitted: (_) => onSubmit(),
-              decoration: const InputDecoration(
-                  labelText: "Name", hintText: "Kefflen..."),
+      child: SingleChildScrollView(
+        // reverse: true,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: TextField(
+                controller: nameController,
+                onSubmitted: (_) => onSubmit(),
+                decoration: const InputDecoration(
+                    labelText: "Name", hintText: "Kefflen..."),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: TextField(
-              controller: emailController,
-              onSubmitted: (_) => onSubmit(),
-              decoration: const InputDecoration(
-                  labelText: "Email", hintText: "kefflen@email.com"),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: TextField(
+                controller: emailController,
+                onSubmitted: (_) => onSubmit(),
+                decoration: const InputDecoration(
+                    labelText: "Email", hintText: "kefflen@email.com"),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: TextField(
-              controller: phoneController,
-              onSubmitted: (_) => onSubmit(),
-              decoration: const InputDecoration(
-                  labelText: "Phone", hintText: "(99) 99999-9999"),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: TextField(
+                controller: phoneController,
+                onSubmitted: (_) => onSubmit(),
+                decoration: const InputDecoration(
+                    labelText: "Phone", hintText: "(99) 99999-9999"),
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              TextButton(onPressed: onSubmit, child: const Text("Salvar"))
-            ],
-          )
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(onPressed: onSubmit, child: const Text("Salvar"))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
